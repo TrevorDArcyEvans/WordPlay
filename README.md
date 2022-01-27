@@ -14,12 +14,15 @@ The game also came with a feature that made it easy to share and compare on soci
 
 Wordle 222 5/6*
 
-⬛⬛🟨⬛⬛
-🟨⬛⬛🟩⬛
-⬛⬛🟩🟩🟩
-⬛🟩🟩🟩🟩
-🟩🟩🟩🟩🟩
+⬛⬛🟨⬛⬛<br>
+🟨⬛⬛🟩⬛<br>
+⬛⬛🟩🟩🟩<br>
+⬛🟩🟩🟩🟩<br>
+🟩🟩🟩🟩🟩<br>
 ## Initial Exploration
 
 This game seemed sufficiently constrained that an automated exploration of the combinatorics was tempting. 
-Initial development use 
+
+Initial development uses/used the [english-words](https://github.com/dwyl/english-words) repo from [Dwyl](https://github.com/dwyl), and a small filter program to filter out 5-letter terms. This dictionary contains both proper nouns and non-proper nouns. In the online game of wordle, proper nouns do not seem to be permitted. 
+
+A simulator was built [Game.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Game.cs) and a base class [Player.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Player.cs) to interact with the game. These established a baseline for 'bad guessing' players who establish the framework for analysis.  
