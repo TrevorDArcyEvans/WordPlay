@@ -30,9 +30,9 @@ In the online game of wordle, proper nouns do not seem to be permitted. The Word
 A simulator was built [Game.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Game.cs) and a base class [Player.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Player.cs) to interact with the game. These established a baseline for 'bad guessing' players who establish the framework for analysis. Word selection and word guessing both come from the same pool of words presently. 
 
 ## Bot types : 
-- Player ([player.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Player.cs) : Basic implementation. Randomly guesses words. 
-- Dopey ([]()) : Randomly guesses words, but doesn't repeat.
-- Dreamy ([]()) : When a letter is reported absent from the solution, dreamy won't guess words containing that letter (negative selection)
-- Thoughtful ([]()) : Dreamy + When a letter is reported in a location, thoughtful won't guess words without that letter at that position (positive selection)
-- Sage ([]()) : Thoughtful + When a letter is reported, but not at a location, Sage won't guess words having that letter in that position (partial selection)
-- Picky ([]()) : Sage + A pre-selected set of candidate guesses (simulating people with 'favorite starting words')
+- Player ([player.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Player.cs)) : Basic implementation. Randomly guesses words. 
+- Dopey ([Dopey.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Dopey.cs)) : Randomly guesses words, but doesn't repeat.
+- Dreamy ([Dreamy.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Dreamy.cs)) : When a letter is reported absent from the solution, dreamy won't guess words containing that letter (negative selection)
+- Thoughtful ([Thoughtful.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Thoughtful.cs)) : Dreamy + When a letter is reported in a location, thoughtful won't guess words without that letter at that position (positive selection)
+- Sage ([Sage.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Sage.cs)) : Thoughtful + When a letter is reported, but not at a location, Sage won't guess words having that letter in that position (partial selection)
+- Picky ([Picky.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Picky.cs)) : Sage + A pre-selected set of candidate guesses (simulating people with 'favorite starting words')
