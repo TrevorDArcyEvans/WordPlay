@@ -5,7 +5,7 @@ In Late December 2021, the word game [Wordle](https://www.powerlanguage.co.uk/wo
 
 The Game's simplicity was part of its charm:
 
-- A player successively guesses 5-letter words up to six times.
+- A player successively guesses 5-letter words up to six times
 - Each guess earns a response of a non-match, a partial match, or a full match
 - Players who guess 6 times without matching 'lose'
 - All players play the same word each day (as defined by local timezone)
