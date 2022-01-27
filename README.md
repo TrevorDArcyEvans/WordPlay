@@ -36,3 +36,12 @@ A simulator was built [Game.c](https://github.com/seanmunson/WordPlay/blob/main/
 - Thoughtful ([Thoughtful.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Thoughtful.cs)) : Dreamy + When a letter is reported in a location, thoughtful won't guess words without that letter at that position (positive selection)
 - Sage ([Sage.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Sage.cs)) : Thoughtful + When a letter is reported, but not at a location, Sage won't guess words having that letter in that position (partial selection)
 - Picky ([Picky.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Picky.cs)) : Sage + A pre-selected set of candidate guesses (simulating people with 'favorite starting words')
+
+
+## ToDo: 
+- Frequency analysis (FA) on remaining words & picking terms with maximum potential to expose / eliminate future choices. 
+- Covering-first strategies.
+- Testing with more than 6 guesses.
+- Testing with 'wider' words (6,7,8+ letters) 
+- Performance effects on seperated lists of candidate and non-winning words, as wordle does. 
+- Language frequency based word & solution selection
