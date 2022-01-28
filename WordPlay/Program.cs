@@ -85,6 +85,8 @@ namespace WordPlay
                new PlayStruct { Type = PlayerType.picky, Name = "Picky - Rivkah", Gamelength = defaultLength, Seed = "adore;spiny;audio;stern" }));
             E.Add(new ExperimentStruct(
                 new PlayStruct { Type = PlayerType.freaky, Name = "Freaky", Gamelength = defaultLength }));
+            E.Add(new ExperimentStruct(
+                new PlayStruct { Type = PlayerType.doublefreaky, Name = "DoubleFreak", Gamelength = defaultLength }));
         }
 
     } //end class
