@@ -16,7 +16,7 @@ namespace WordPlay
 
         }
 
-        public new char[] SelectWord()
+        public override char[] SelectWord()
         {
             return Wordlist.Random().ToCharArray();
         }

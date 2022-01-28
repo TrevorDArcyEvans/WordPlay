@@ -3,7 +3,7 @@ using System;
 
 namespace WordPlay
 {
-    public enum PlayerType { basic, dreamy, dopey, thoughtful, sage, picky }
+    public enum PlayerType { basic, dreamy, dopey, thoughtful, sage, picky, freaky }
     public class PlayerFactory{
         private Random R = new Random((int)DateTime.Now.Ticks);
         public Player Create(PlayerType type, List<string> dictionary, string Name=null, string Seed=null)
@@ -29,6 +29,9 @@ namespace WordPlay
                     break;
                 case PlayerType.dreamy:
                     retval = new Dreamy(dictionary);
+                    break;
+                case PlayerType.freaky:
+                    retval = new Freaky(dictionary);
                     break;
 
             }

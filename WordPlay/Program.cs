@@ -17,11 +17,11 @@ namespace WordPlay
         public static void Main(string[] args)
         {
             List<ExperimentStruct> experiments = new List<ExperimentStruct>();
-            ConfigExperiments(experiments, 10);
+            ConfigExperiments(experiments, 6);
 
             PossibleWords = new List<string>(Wordlist.Words).Where( s=>s.ToCharArray()[0] > 'Z').Select( s=> s.ToUpper()).ToList();
 
-            int iterations = 100000;
+            int iterations = 10000;
             System.Console.Out.WriteLine("Running simulations ... ");
             System.Console.Out.WriteLine("[----+----+----+----+----+----+----+----+----+-----]");
             System.Console.Out.Write("[");
@@ -83,6 +83,8 @@ namespace WordPlay
                 new PlayStruct { Type = PlayerType.picky, Name = "Picky - Nancy", Gamelength = defaultLength, Seed = "learn;rough;aioli;route;louse;rouge;think;drink;cramp" }));
             E.Add(new ExperimentStruct(
                new PlayStruct { Type = PlayerType.picky, Name = "Picky - Rivkah", Gamelength = defaultLength, Seed = "adore;spiny;audio;stern" }));
+            E.Add(new ExperimentStruct(
+                new PlayStruct { Type = PlayerType.freaky, Name = "Freaky", Gamelength = defaultLength }));
         }
 
     } //end class
