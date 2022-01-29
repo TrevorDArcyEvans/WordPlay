@@ -8,8 +8,4 @@
         public int Gamelength;
 
     }
-
-        
-    
-
 }

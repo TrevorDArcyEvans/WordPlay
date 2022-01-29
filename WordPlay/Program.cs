@@ -16,13 +16,16 @@ namespace WordPlay
         }
         public static void Main(string[] args)
         {
+            int iterations = 10000;
+            int gameLength = 6;
             List<ExperimentStruct> experiments = new List<ExperimentStruct>();
-            ConfigExperiments(experiments, 6);
+            ConfigExperiments(experiments, gameLength);
 
             PossibleWords = new List<string>(Wordlist.Words).Where( s=>s.ToCharArray()[0] > 'Z').Select( s=> s.ToUpper()).ToList();
 
-            int iterations = 10000;
+            
             System.Console.Out.WriteLine("Running simulations ... ");
+            Console.Out.WriteLine("Iterations: {0}\nLength:{1}\nDictionarySize:{2}", iterations, gameLength, PossibleWords.Count);
             System.Console.Out.WriteLine("[----+----+----+----+----+----+----+----+----+-----]");
             System.Console.Out.Write("[");
 

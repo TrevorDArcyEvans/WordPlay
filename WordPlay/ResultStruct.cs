@@ -9,8 +9,4 @@ namespace WordPlay
         public bool Victorious;
         public char[] Solution;
     }
-
-        
-    
-
 }

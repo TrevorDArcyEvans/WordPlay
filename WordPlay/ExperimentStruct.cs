@@ -45,9 +45,9 @@ namespace WordPlay
             {
                 countOfSolutionLengths[r.Outcomes.Count]++;
             }
-            foreach ( int l in countOfSolutionLengths)
+            for(int l=1;l<countOfSolutionLengths.Length;l++)
             {
-                retval += String.Format(" {0}", l.ToString().PadRight(5, ' '));
+                retval += String.Format(" {0}", countOfSolutionLengths[l].ToString().PadRight(5, ' '));
             }
             return retval;
         }
