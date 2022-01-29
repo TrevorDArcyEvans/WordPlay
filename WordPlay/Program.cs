@@ -82,9 +82,9 @@ namespace WordPlay
             E.Add(new ExperimentStruct(
                 new PlayStruct { Type = PlayerType.sage, Name = "Sage", Gamelength = defaultLength }));
             E.Add(new ExperimentStruct(
-                new PlayStruct { Type = PlayerType.picky, Name = "Picky - Nancy", Gamelength = defaultLength, Seed = "learn;rough;aioli;route;louse;rouge;think;drink;cramp" }));
+                new PlayStruct { Type = PlayerType.picky, Name = "Picky - Banana", Gamelength = defaultLength, Seed = "learn;rough;aioli;route;louse;rouge;think;drink;cramp" }));
             E.Add(new ExperimentStruct(
-               new PlayStruct { Type = PlayerType.picky, Name = "Picky - Rivkah", Gamelength = defaultLength, Seed = "adore;spiny;audio;stern" }));
+               new PlayStruct { Type = PlayerType.picky, Name = "Picky - Ravenclaw", Gamelength = defaultLength, Seed = "adore;spiny;audio;stern" }));
             E.Add(new ExperimentStruct(
                new PlayStruct { Type = PlayerType.picky, Name = "Picky - word.tips", Gamelength = defaultLength, Seed = "Noise,Abuse,Opera,Naive,About,Piano,House,Alone,Above,Email,Azure,Juice,Movie,Cause,Video,Quiet,Olive,Ocean,Alive,Value,Voice,Radio,Media,ludic,ulnar,daunt,acidy".ToLower() }));
             E.Add(new ExperimentStruct(
@@ -92,8 +92,9 @@ namespace WordPlay
             E.Add(new ExperimentStruct(
                new PlayStruct { Type = PlayerType.picky, Name = "Picky - Ace", Gamelength = defaultLength, Seed = "laser" }));
             E.Add(new ExperimentStruct(
-               new PlayStruct { Type = PlayerType.picky, Name = "Picky - RedBen", Gamelength = defaultLength, Seed = "frisk,empty,gland,picky,wrest,buxom,judge,proxy,snack,blitz,blind,quoth,jerky,swamp,blind,mucky,topaz,shrew,bugle,frock,nymph,vista,album,fjord,sixty,wench,album,fjord,winch,zesty,dunce,morph,gawky,blitz,glyph,banjo,wreck,midst" }));
-
+               new PlayStruct { Type = PlayerType.picky, Name = "Picky - Bean", Gamelength = defaultLength, Seed = "frisk,empty,gland,picky,wrest,buxom,judge,proxy,snack,blitz,blind,quoth,jerky,swamp,blind,mucky,topaz,shrew,bugle,frock,nymph,vista,album,fjord,sixty,wench,album,fjord,winch,zesty,dunce,morph,gawky,blitz,glyph,banjo,wreck,midst" }));
+            E.Add(new ExperimentStruct(
+               new PlayStruct { Type = PlayerType.picky, Name = "Picky - Sonar", Gamelength = defaultLength, Seed = "outie,yarns" }));
             E.Add(new ExperimentStruct(
                 new PlayStruct { Type = PlayerType.freaky, Name = "Freaky", Gamelength = defaultLength }));
             E.Add(new ExperimentStruct(
