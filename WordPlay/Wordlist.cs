@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
 namespace WordPlay
 {
@@ -13,7 +9,8 @@ namespace WordPlay
         static string FILENAME = "wordle-solves.txt";
         public static string[] Words
         {
-            get {
+            get
+            {
                 if (words.Count() == 0)
                 {
                     words = File.ReadAllLines(FILENAME);

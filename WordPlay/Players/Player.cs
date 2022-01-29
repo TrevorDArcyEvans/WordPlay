@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace WordPlay
 {
-    
+
     /// <summary>
     /// Base Player class. Worst strategy - just keep picking a random word. Should lose almost every time. 
     /// </summary>
@@ -21,7 +21,7 @@ namespace WordPlay
             Wordlist = source;
             Outcomes = new List<char[]>();
         }
-        public virtual void RespondToPlay(char []Guess, char[] Response) 
+        public virtual void RespondToPlay(char[] Guess, char[] Response)
         {
             // this is a stub to allow descendents to respond to the response
         }
@@ -65,11 +65,12 @@ namespace WordPlay
         }
         public ResultStruct Play(Game g)
         {
-            while (g.GameOver == false && Wordlist.Count>0) {
+            while (g.GameOver == false && Wordlist.Count > 0)
+            {
                 var w = SelectWord();
-                var r = g.Play(w); 
+                var r = g.Play(w);
                 Outcomes.Add(r);
-                RespondToPlay(w,r);
+                RespondToPlay(w, r);
             }
             Victory = g.isResponseSolution(Outcomes[Outcomes.Count - 1]);
             Solution = g.word;
@@ -80,7 +81,7 @@ namespace WordPlay
             retval.Victorious = Victory;
             return retval;
         }
-        public List<char[]> results { get { return Outcomes; } }  
+        public List<char[]> results { get { return Outcomes; } }
     }
 
 }

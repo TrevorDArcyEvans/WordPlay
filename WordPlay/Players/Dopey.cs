@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System;
 
 namespace WordPlay
 {
@@ -8,7 +7,7 @@ namespace WordPlay
         private HashSet<char[]> chosen;
         public Dopey(List<string> source) : base(source)
         {
-            chosen = new HashSet<char[]>(); 
+            chosen = new HashSet<char[]>();
         }
 
         public new char[] SelectWord()

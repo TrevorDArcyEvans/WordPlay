@@ -5,7 +5,7 @@ namespace WordPlay
     public class Freaky : Sage
     {
         public Freaky(List<string> source) : base(source)
-        { 
+        {
         }
 
         public override char[] SelectWord()
@@ -14,7 +14,7 @@ namespace WordPlay
             // most popular letter
             var Fq = Wordlist.Analysis();
 
-            var retval =  Wordlist.Random();
+            var retval = Wordlist.Random();
             while (!retval.Contains(Fq[0].Key))
             {
                 retval = Wordlist.Random();

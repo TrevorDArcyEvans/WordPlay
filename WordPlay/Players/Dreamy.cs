@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace WordPlay 
+namespace WordPlay
 {
     // this is the minimum expected-to-play-right item.
     public class Dreamy : Player

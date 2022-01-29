@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System; 
 
 namespace WordPlay
 {
@@ -12,15 +11,15 @@ namespace WordPlay
             // our strategy is destructive
             // make a copy of the list.
             this.Wordlist = source.ToList();
-            
+
         }
-       
+
         public override char[] SelectWord()
         {
             return Wordlist.Random().ToCharArray();
         }
-        
-        public override void RespondToPlay(char [] guess, char [] response)
+
+        public override void RespondToPlay(char[] guess, char[] response)
         {
             for (int i = 0; i < 5; i++)
             {

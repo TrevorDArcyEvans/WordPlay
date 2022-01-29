@@ -12,10 +12,10 @@ namespace WordPlay
         public string Scoringest()
         {
             var Qd = new Dictionary<char, int>(Wordlist.Analysis());
-            int highScore=0;
-            string highString="";
+            int highScore = 0;
+            string highString = "";
 
-            foreach(string s in Wordlist)
+            foreach (string s in Wordlist)
             {
                 var score = 0;
                 foreach (char c in s.ToCharArray())
@@ -30,8 +30,8 @@ namespace WordPlay
             return highString;
         }
         public override char[] SelectWord()
-        { 
-            var retval = Scoringest();  
+        {
+            var retval = Scoringest();
             return retval.ToCharArray();
         }
 

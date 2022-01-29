@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace WordPlay
 {
     public enum PlayerType { basic, dreamy, dopey, thoughtful, sage, picky, freaky, doublefreaky }
-    public class PlayerFactory{
+    public class PlayerFactory
+    {
         private Random R = new Random((int)DateTime.Now.Ticks);
-        public Player Create(PlayerType type, List<string> dictionary, string Name=null, string Seed=null)
+        public Player Create(PlayerType type, List<string> dictionary, string Name = null, string Seed = null)
         {
-            Player retval = null ;
-            string name = (Name == null) ? Guid.NewGuid().ToString() :Name;
+            Player retval = null;
+            string name = (Name == null) ? Guid.NewGuid().ToString() : Name;
             switch (type)
             {
                 case PlayerType.basic:
@@ -25,7 +26,7 @@ namespace WordPlay
                     retval = new Sage(dictionary);
                     break;
                 case PlayerType.picky:
-                    retval = new Picky(dictionary,Seed);
+                    retval = new Picky(dictionary, Seed);
                     break;
                 case PlayerType.dreamy:
                     retval = new Dreamy(dictionary);

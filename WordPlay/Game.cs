@@ -1,20 +1,20 @@
 ﻿namespace WordPlay
 {
-    public enum responsetype { nomatch=0x1A, partial=0xB0, full=0xDB};
-    
+    public enum responsetype { nomatch = 0x1A, partial = 0xB0, full = 0xDB };
+
     public class Game
     {
         public bool GameOver;
         public char[] word;
         int turn = 0;
         int maxTurns = 6;
-        public string Name = ""; 
+        public string Name = "";
         public Game(string wordSelected = null, int maxGuesses = 6)
         {
             word = wordSelected.ToCharArray();
             turn = 0;
             GameOver = false;
-            maxTurns = maxGuesses-1;
+            maxTurns = maxGuesses - 1;
         }
         public char[] Play(char[] guessword)
         {
@@ -25,7 +25,8 @@
                 for (int i = 0; i < 5; i++)
                 {
                     retval[i] = (char)responsetype.nomatch;
-                    if (guessword[i] == word[i]) { 
+                    if (guessword[i] == word[i])
+                    {
                         retval[i] = (char)responsetype.full;
                         numberOfExactMatches++;
                     }
@@ -38,18 +39,18 @@
                 }
                 turn++;
 
-                if (numberOfExactMatches==5) GameOver = true;
-                
+                if (numberOfExactMatches == 5) GameOver = true;
+
 
                 if (turn == maxTurns)
-                { 
-                    GameOver = true; 
+                {
+                    GameOver = true;
                 }
             }
             else
             {
-                GameOver = true; 
-            } 
+                GameOver = true;
+            }
             return retval;
         }
         public bool isResponseSolution(char[] responsetext)

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WordPlay
 {
@@ -20,11 +17,12 @@ namespace WordPlay
         public override char[] SelectWord()
         {
             // picky uses preferred words first.
-            while(preferredWords.Count>0){
+            while (preferredWords.Count > 0)
+            {
                 if (Wordlist.Contains(preferredWords.First()))
                     return preferredWords.First().ToCharArray();
                 else
-                    preferredWords.Remove (preferredWords.First());
+                    preferredWords.Remove(preferredWords.First());
             }
             return Wordlist.Random().ToCharArray();
         }

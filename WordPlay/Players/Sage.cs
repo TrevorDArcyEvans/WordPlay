@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WordPlay
 {
@@ -27,7 +24,7 @@ namespace WordPlay
             {
                 if (response[i] == (char)responsetype.full) require(guess[i], i);
                 if (response[i] == (char)responsetype.nomatch) whittle(guess[i]);
-                if (response[i] == (char)responsetype.partial) restrict(guess[i],i);
+                if (response[i] == (char)responsetype.partial) restrict(guess[i], i);
             }
             Wordlist.Remove(new string(guess));
         }
