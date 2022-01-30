@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "WordDex": {
-      "commandName": "Project",
-      "commandLineArgs": "C:\\Projects\\word-less\\WordDex\\words.txt C:\\Projects\\word-less\\WordDex\\5letterwords.txt"
-    }
-  }
-}
