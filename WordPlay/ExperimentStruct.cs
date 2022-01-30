@@ -5,55 +5,63 @@ namespace WordPlay
 {
     public class ExperimentStruct
     {
+        public PlayStruct Settings;
+        public List<ResultStruct> Results;
+        public int    Wins;
+        public double WinRate;
+        public int    Losses;
+        public double LossRate;
+        public double Avg;
+        public double StDev;
+        public string Histogram;
         public ExperimentStruct(PlayStruct p)
         {
             this.Settings = p;
             this.Results = new List<ResultStruct>();
-        }
-        public PlayStruct Settings;
-        public List<ResultStruct> Results;
-        public float Losses()
-        {
-            return Results.Select(o => (o.Victorious == true) ? 0 : 1).Sum();
-        }
-        public float Wins()
-        {
-            return Results.Select(o => (o.Victorious == true) ? 1 : 0).Sum();
-        }
-        public float LossRate()
-        {
-            return Results.Count == 0 ? 0 : Results.Where(o => o.Victorious == false).Count() / (float)Results.Count;
-        }
-        public float WinRate()
-        {
-            float v = Results.Where(o => o.Victorious == false).Count() / (float)Results.Count;
-            return Results.Count == 0 ? 0 : v;
-        }
-        public float Outcomes()
-        {
-            float tot = (float)Results.Select(o => (o.Victorious == true) ? o.Outcomes.Count : 0).Sum();
 
-            return (Results.Count > 0) ? tot / (float)this.Wins() : 0;
         }
-
-        public string OutcomeHist()
+        public void Snapshot()
         {
-            string retval = "";
+            Wins = 0;
+            WinRate = 0;
+            Losses = 0;
+            LossRate = 0;
+            Avg = 0;
+            StDev = 0;
+            Histogram = "";
+
             int[] countOfSolutionLengths = new int[Results.Max(o => o.Outcomes.Count) + 1];
-            Array.Fill(countOfSolutionLengths, 0);
             foreach (var r in Results)
             {
-                countOfSolutionLengths[r.Outcomes.Count]++;
+                if (r.Victorious)
+                {
+                    Wins++;
+                    Avg += r.Outcomes.Count;
+                    countOfSolutionLengths[r.Outcomes.Count]++;
+                }
+                else
+                    Losses++;
             }
+            
+            WinRate = Wins / Results.Count;
+            LossRate = 1 - WinRate;
+            Avg = Avg / Results.Count;
+
             for (int l = 1; l < countOfSolutionLengths.Length; l++)
             {
-                retval += String.Format(" {0}", countOfSolutionLengths[l].ToString().PadRight(5, ' '));
+                Histogram += String.Format(" {0}", countOfSolutionLengths[l].ToString().PadRight(5, ' '));
             }
-            return retval;
+
+            foreach (var r in Results)
+            {
+                if (r.Victorious)
+                {
+                    double i =  r.Outcomes.Count;
+                    StDev += (i - Avg) * (i - Avg);
+                }
+            }
+            StDev /= Wins;
+            StDev = Math.Sqrt(StDev);
         }
     }
-
-
-
-
 }

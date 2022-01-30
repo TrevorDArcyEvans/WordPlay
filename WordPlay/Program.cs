@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+
 namespace WordPlay
 {
 
     public class Program
     {
-        public static List<string> PossibleWords = new List<string>(Wordlist.Words);
+        public static List<string> PossibleWords = new List<string>(Wordlist.Words());
 
         public static HashSet<string> ChosenWords;
         static string GetWord()
@@ -15,16 +17,19 @@ namespace WordPlay
         }
         public static void Main(string[] args)
         {
-            int iterations = 10000;
+            int iterations = 500;
             int gameLength = 6;
+            int gameWidth = 5;
             List<ExperimentStruct> experiments = new List<ExperimentStruct>();
             ConfigExperiments(experiments, gameLength);
 
-            PossibleWords = new List<string>(Wordlist.Words).Where(s => s.ToCharArray()[0] > 'Z').Select(s => s.ToUpper()).ToList();
-
+            // Wordlist.FileName = "words.txt";
+            Wordlist.FileName = "wordle-solves.txt";
+            System.Console.Out.WriteLine("Loading {0}",Wordlist.FileName);
+            if (gameLength!=5) PossibleWords = new List<string>(Wordlist.Words(gameWidth));
 
             System.Console.Out.WriteLine("Running simulations ... ");
-            Console.Out.WriteLine("Iterations: {0}\nLength:{1}\nDictionarySize:{2}", iterations, gameLength, PossibleWords.Count);
+            Console.Out.WriteLine("Iterations: {0}\nLength: {1}\nWidth: {2}\nDictionarySize: {3}", iterations, gameLength, gameWidth, PossibleWords.Count);
             System.Console.Out.WriteLine("[----+----+----+----+----+----+----+----+----+-----]");
             System.Console.Out.Write("[");
 
@@ -40,33 +45,37 @@ namespace WordPlay
                     System.Console.Out.Write("#");
                 }
 
-                foreach (var experiment in experiments)
-                {
-                    Player p = PF.Create(
-                        experiment.Settings.Type,
-                        PossibleWords,
-                        experiment.Settings.Name,
-                        experiment.Settings.Seed
-                        );
-                    Game g = new Game(w, experiment.Settings.Gamelength);
-                    experiment.Results.Add(p.Play(g));
-                }
+                Parallel.ForEach(experiments, experiment =>
+                    {
+                        Player p = PF.Create(
+                            experiment.Settings.Type,
+                            PossibleWords,
+                            experiment.Settings.Name,
+                            experiment.Settings.Seed
+                            );
+                        Game g = new Game(w, experiment.Settings.Gamelength);
+                        experiment.Results.Add(p.Play(g));
+                    });
             }
-
-
-            System.Console.Out.WriteLine("]");
-            System.Console.Out.WriteLine(" ModelType          |    Wins   |   Losses  |  Avg Length  | Histogram");
+            
+            System.Console.Out.WriteLine("]\n\n");
+            System.Console.Out.WriteLine(" ModelType          | Wins  | Losses  | Sol Rt | St Dev | Histogram");
+            System.Console.Out.WriteLine("--------------------|-------|---------|--------|--------|------------------");
             foreach (var exp in experiments)
+            {
+                exp.Snapshot();
                 System.Console.Out.WriteLine(
                     string.Format(
-                        "{0}| {1,2}| {2,2}| {3} | {4}",
+                        "{0}| {1,2}| {2,2}| {3} | {4} | {5}",
                         exp.Settings.Name.PadRight(20, ' '),
-                        exp.Wins().ToString().PadRight(10, ' '),
-                        exp.Losses().ToString().PadRight(10, ' '),
-                        exp.Outcomes().ToString().PadRight(12, ' '),
-                        exp.OutcomeHist()
+                        exp.Wins.ToString().PadRight(6, ' '),
+                        exp.Losses.ToString().PadRight(8, ' '),
+                        exp.StDev.ToString("#0.00#").PadRight(6, ' '),
+                        (exp.Losses == 0 ? 0 : exp.Avg).ToString("#0.00#").PadRight(6, ' '),
+                        exp.Histogram
                     )
                 );
+            }
         }
 
         public static void ConfigExperiments(List<ExperimentStruct> E, int defaultLength = 6)
