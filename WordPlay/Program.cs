@@ -17,16 +17,19 @@ namespace WordPlay
         }
         public static void Main(string[] args)
         {
-            int iterations = 500;
+            int iterations = 100;
             int gameLength = 6;
             int gameWidth = 5;
+            //The DWYL of words
+            Wordlist.FileName = "words.txt";
+
+            // The actual solutions that wordle allows
+            // Wordlist.FileName = "wordle-solves.txt";
+
             List<ExperimentStruct> experiments = new List<ExperimentStruct>();
             ConfigExperiments(experiments, gameLength);
-
-            // Wordlist.FileName = "words.txt";
-            Wordlist.FileName = "wordle-solves.txt";
             System.Console.Out.WriteLine("Loading {0}",Wordlist.FileName);
-            if (gameLength!=5) PossibleWords = new List<string>(Wordlist.Words(gameWidth));
+            if (gameLength!=5) PossibleWords = new List<string>(Wordlist.Words(gameWidth,false));
 
             System.Console.Out.WriteLine("Running simulations ... ");
             Console.Out.WriteLine("Iterations: {0}\nLength: {1}\nWidth: {2}\nDictionarySize: {3}", iterations, gameLength, gameWidth, PossibleWords.Count);
