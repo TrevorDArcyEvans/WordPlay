@@ -29,6 +29,8 @@ In the online game of wordle, proper nouns do not seem to be permitted. The Word
 
 A simulator was built [Game.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Game.cs) and a base class [Player.c](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Player.cs) to interact with the game. These established a baseline for 'bad guessing' players who establish the framework for analysis. Word selection and word guessing both come from the same pool of words presently. 
 
+
+
 ## Bot types : 
 - Player ([player.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Player.cs)) : Basic implementation. Randomly guesses words. 
 - Dopey ([Dopey.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Dopey.cs)) : Randomly guesses words, but doesn't repeat.
@@ -40,10 +42,11 @@ A simulator was built [Game.c](https://github.com/seanmunson/WordPlay/blob/main/
 - DoubleFreak ([DoubleFreak.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/DoubleFreak.cs) : Sage + in each step, it evaluates every word in the list and assigns a weight based on the popularity of the letter, then choosing the highest-ranked word.
 
 
-## ToDo: 
-- Frequency analysis (FA) on remaining words & picking terms with maximum potential to expose / eliminate future choices. 
-- Covering-first strategies.
-- Testing with more than 6 guesses.
-- Testing with 'wider' words (6,7,8+ letters) 
+## ToDo:  
 - Performance effects on seperated lists of candidate and non-winning words, as wordle does. 
 - Language frequency based word & solution selection
+
+## log:
+1/28 - Frequency analysis of two types have been implemented. More work is needed
+1/29 - Covering strategies have been implemented using a selection of terms in a picky player. 
+1/30 - In the interest of exploration, the command-line app has been reconfigured to allow a selection of an arbitrary width (word length) and an arbitrary number of guesses in the game, as well as the selection of a different source file. 
