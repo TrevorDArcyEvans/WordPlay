@@ -60,8 +60,16 @@ namespace WordPlay
                     StDev += (i - Avg) * (i - Avg);
                 }
             }
-            StDev /= Wins;
-            StDev = Math.Sqrt(StDev);
+            if (Wins != 0)
+            {
+                StDev /= Wins;
+                StDev = Math.Sqrt(StDev);
+            }
+            else
+            {
+                StDev = 0;
+            }
+            
         }
     }
 }
