@@ -4,8 +4,10 @@ namespace WordPlay
 {
     public class Freaky : Sage
     {
+        public List<char> played= new List<char>();
         public Freaky(List<string> source) : base(source)
         {
+             
         }
 
         public override char[] SelectWord()
@@ -15,10 +17,16 @@ namespace WordPlay
             var Fq = Wordlist.Analysis();
 
             var retval = Wordlist.Random();
-            while (!retval.Contains(Fq[0].Key))
+            int i=0;
+            while (this.played.Contains(Fq[i].Key)==true)
+            {
+                i++;
+            }
+            while (!retval.Contains(Fq[i].Key))
             {
                 retval = Wordlist.Random();
             }
+            this.played.Add(Fq[i].Key);
             return retval.ToCharArray();
         }
 

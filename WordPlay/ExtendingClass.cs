@@ -34,7 +34,7 @@ namespace WordPlay
                         FrequencyCount.Add(c, 1);
                     }
 
-            return FrequencyCount.ToArray().OrderBy(o => o.Value).ToArray();
+            return FrequencyCount.ToArray().OrderBy(o => (1-o.Value)).ToArray();
         }
 
         public static bool Contains(this string s, char c)
