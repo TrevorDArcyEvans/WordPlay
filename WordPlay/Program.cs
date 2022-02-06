@@ -17,14 +17,14 @@ namespace WordPlay
         }
         public static void Main(string[] args)
         {
-            int iterations = 100;
+            int iterations = 10000;
             int gameLength = 6;
             int gameWidth = 5;
             //The DWYL of words
-            Wordlist.FileName = "words.txt";
+            //Wordlist.FileName = "words.txt";
 
             // The actual solutions that wordle allows
-            // Wordlist.FileName = "wordle-solves.txt";
+             Wordlist.FileName = "wordle-solves.txt";
 
             List<ExperimentStruct> experiments = new List<ExperimentStruct>();
             ConfigExperiments(experiments, gameLength);

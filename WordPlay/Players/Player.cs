@@ -38,13 +38,26 @@ namespace WordPlay
             Wordlist = Wordlist.Where(s => { return s.Contains(c) == true; }).ToList();
         }
         /// <summary>
-        /// Eliminates entries that don't have a certain letter
+        /// Eliminates entries that have a certain letter
         /// </summary>
         /// <param name="c"></param>
         protected void whittle(char c)
         {
             Wordlist = Wordlist.Where(s => { return s.Contains(c) == false; }).ToList();
         }
+
+
+        /// <summary>
+        /// Eliminates entries that dont have a certain letter
+        /// </summary>
+        /// <param name="c"></param>
+        protected void gotta(char c)
+        {
+            Wordlist = Wordlist.Where(s => { return s.Contains(c) == true; }).ToList();
+            // Thanks redben
+        }
+
+
         /// <summary>
         /// Eliminates entries without a certain letter at a certain position
         /// </summary>

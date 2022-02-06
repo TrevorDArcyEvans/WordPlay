@@ -24,7 +24,11 @@ namespace WordPlay
             {
                 if (response[i] == (char)responsetype.full) require(guess[i], i);
                 if (response[i] == (char)responsetype.nomatch) whittle(guess[i]);
-                if (response[i] == (char)responsetype.partial) restrict(guess[i], i);
+                if (response[i] == (char)responsetype.partial)
+                {
+                    restrict(guess[i], i);
+                    gotta(guess[i]);
+                }
             }
             Wordlist.Remove(new string(guess));
         }

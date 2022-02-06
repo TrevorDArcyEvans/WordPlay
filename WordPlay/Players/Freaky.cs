@@ -17,16 +17,23 @@ namespace WordPlay
             var Fq = Wordlist.Analysis();
 
             var retval = Wordlist.Random();
-            int i=0;
-            while (this.played.Contains(Fq[i].Key)==true)
+
+            int mostFrequentletter = -1; ;
+            // avoid re-requiring 'successful' vowels
+            for( var i=0; (i < played.Count && i < Fq.Length); i++)
             {
-                i++;
+                if (!played.Contains(Fq[i].Key) && mostFrequentletter==-1)
+                {
+                    mostFrequentletter = i;
+                }
+
             }
-            while (!retval.Contains(Fq[i].Key))
+            if (mostFrequentletter == -1) mostFrequentletter = 0;
+            while (!retval.Contains(Fq[mostFrequentletter].Key))
             {
                 retval = Wordlist.Random();
             }
-            this.played.Add(Fq[i].Key);
+            this.played.Add(Fq[mostFrequentletter].Key);
             return retval.ToCharArray();
         }
 
