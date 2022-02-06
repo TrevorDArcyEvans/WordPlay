@@ -17,7 +17,7 @@ namespace WordPlay
         }
         public static void Main(string[] args)
         {
-            int iterations = 10000;
+            int iterations = 1000;
             int gameLength = 6;
             int gameWidth = 5;
             //The DWYL of words
@@ -62,17 +62,18 @@ namespace WordPlay
             }
             
             System.Console.Out.WriteLine("]\n\n");
-            System.Console.Out.WriteLine(" ModelType          | Wins  | Losses  | Sol Rt | St Dev | Histogram");
-            System.Console.Out.WriteLine("--------------------|-------|---------|--------|--------|------------------");
+            System.Console.Out.WriteLine(" ModelType           | Win % | Wins  | Losses  | Sol Rt | St Dev | Histogram");
+            System.Console.Out.WriteLine("---------------------|-------|-------|---------|--------|--------|------------------");
             foreach (var exp in experiments)
             {
                 exp.Snapshot();
                 System.Console.Out.WriteLine(
                     string.Format(
-                        "{0}| {1,2}| {2,2}| {3} | {4} | {5}",
+                        "{0} | {1,2} | {2,2}| {3} | {4} | {5} | {6}",
                         exp.Settings.Name.PadRight(20, ' '),
+                        (Math.Floor((float)exp.Wins * 1000) / (10 * iterations)).ToString("#0.0").PadLeft(5,' '),
                         exp.Wins.ToString().PadRight(6, ' '),
-                        exp.Losses.ToString().PadRight(8, ' '),
+                        exp.Losses.ToString().PadRight(7, ' '),
                         exp.StDev.ToString("#0.00#").PadRight(6, ' '),
                         (exp.Losses == 0 ? 0 : exp.Avg).ToString("#0.00#").PadRight(6, ' '),
                         exp.Histogram
