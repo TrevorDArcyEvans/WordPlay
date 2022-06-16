@@ -2,42 +2,47 @@
 
 namespace WordPlay
 {
-    public class Freaky : Sage
+  public class Freaky : Sage
+  {
+    public List<char> played = new List<char>();
+
+    public Freaky(List<string> source) :
+      base(source)
     {
-        public List<char> played= new List<char>();
-        public Freaky(List<string> source) : base(source)
-        {
-             
-        }
-
-        public override char[] SelectWord()
-        {
-            // do a frequency analysis and choose a word with the
-            // most popular letter
-            var Fq = Wordlist.Analysis();
-
-            var retval = Wordlist.Random();
-
-            int mostFrequentletter = -1; ;
-            // avoid re-requiring 'successful' vowels
-            for( var i=0; (i < played.Count && i < Fq.Length); i++)
-            {
-                if (!played.Contains(Fq[i].Key) && mostFrequentletter==-1)
-                {
-                    mostFrequentletter = i;
-                }
-
-            }
-            if (mostFrequentletter == -1) mostFrequentletter = 0;
-            while (!retval.Contains(Fq[mostFrequentletter].Key))
-            {
-                retval = Wordlist.Random();
-            }
-            this.played.Add(Fq[mostFrequentletter].Key);
-            return retval.ToCharArray();
-        }
-
-        // public override void RespondToPlay -- Inherited from base
-
     }
+
+    public override char[] SelectWord()
+    {
+      // do a frequency analysis and choose a word with the
+      // most popular letter
+      var Fq = Wordlist.Analysis();
+
+      var retval = Wordlist.Random();
+
+      int mostFrequentletter = -1; ;
+      // avoid re-requiring 'successful' vowels
+      for (var i = 0; (i < played.Count && i < Fq.Length); i++)
+      {
+        if (!played.Contains(Fq[i].Key) &&
+          mostFrequentletter == -1)
+        {
+          mostFrequentletter = i;
+        }
+      }
+
+      if (mostFrequentletter == -1)
+      {
+        mostFrequentletter = 0;
+      }
+
+      while (!retval.Contains(Fq[mostFrequentletter].Key))
+      {
+        retval = Wordlist.Random();
+      }
+
+      this.played.Add(Fq[mostFrequentletter].Key);
+
+      return retval.ToCharArray();
+    }
+  }
 }

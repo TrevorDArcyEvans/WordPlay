@@ -2,25 +2,25 @@
 
 namespace WordPlay
 {
-    public class Dopey : Player
-    {
-        private HashSet<char[]> chosen;
-        public Dopey(List<string> source) : base(source)
-        {
-            chosen = new HashSet<char[]>();
-        }
+  public class Dopey : Player
+  {
+    private HashSet<char[]> chosen = new();
 
-        public new char[] SelectWord()
-        {
-            // this doesn't duplicate guesses
-            char[] s;
-            do
-            {
-                s = base.SelectWord();
-            }
-            while (chosen.Contains(s));
-            return s;
-        }
+    public Dopey(List<string> source) :
+      base(source)
+    {
     }
 
+    public new char[] SelectWord()
+    {
+      // this doesn't duplicate guesses
+      char[] s;
+      do
+      {
+        s = base.SelectWord();
+      }
+      while (chosen.Contains(s));
+      return s;
+    }
+  }
 }
