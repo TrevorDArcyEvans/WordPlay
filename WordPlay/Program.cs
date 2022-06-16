@@ -16,11 +16,11 @@ namespace WordPlay
       var sw = Stopwatch.StartNew();
 
       System.Console.Out.WriteLine("Loading {0}", Wordlist.FileName);
-      //List<string> PossibleWords = new List<string>(Wordlist.Words());
 
       int iterations = 1000;
       int gameLength = 6;
       int gameWidth = 5;
+
       //The DWYL of words
       //Wordlist.FileName = "words.txt";
 
@@ -47,21 +47,22 @@ namespace WordPlay
       {
         var w = PossibleWords.Random();
 
-        if (iterations > 0 && (i % graphstep) == 0)
+        if (iterations > 0 &&
+          (i % graphstep) == 0)
         {
           System.Console.Out.Write("#");
         }
 
         Parallel.ForEach(experiments, experiment =>
-            {
-              Player p = PF.Create(
-                          experiment.Settings.Type,
-                          PossibleWords,
-                          experiment.Settings.Name,
-                          experiment.Settings.Seed);
-              Game g = new Game(w, experiment.Settings.Gamelength);
-              experiment.Results.Add(p.Play(g));
-            });
+        {
+          Player p = PF.Create(
+                      experiment.Settings.Type,
+                      PossibleWords,
+                      experiment.Settings.Name,
+                      experiment.Settings.Seed);
+          Game g = new Game(w, experiment.Settings.Gamelength);
+          experiment.Results.Add(p.Play(g));
+        });
       }
 
       System.Console.Out.WriteLine("]");
