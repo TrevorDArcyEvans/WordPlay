@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WordPlay
 {
   public class Program
   {
-    public static List<string> PossibleWords = new List<string>(Wordlist.Words());
-
     public static void Main(string[] args)
     {
       var sw = Stopwatch.StartNew();
-     //List<string> PossibleWords = new List<string>(Wordlist.Words());
+      Wordlist.FileName = "wordle-solves.txt";
+      var PossibleWords = new List<string>(Wordlist.Words());
 
-      System.Console.Out.WriteLine("Loading {0}", Wordlist.FileName);
+      Console.WriteLine("Loading {0}", Wordlist.FileName);
 
       int iterations = 1000;
       int gameLength = 6;
@@ -29,15 +27,15 @@ namespace WordPlay
 
       List<ExperimentStruct> experiments = new List<ExperimentStruct>();
       ConfigExperiments(experiments, gameLength);
-      System.Console.Out.WriteLine("Loading {0}", Wordlist.FileName);
+      Console.WriteLine("Loading {0}", Wordlist.FileName);
       if (gameLength != 5)
       {
         PossibleWords = new List<string>(Wordlist.Words(gameWidth, false));
       }
 
-      System.Console.Out.WriteLine("Running simulations ... ");
-      Console.Out.WriteLine("Iterations: {0}\nLength: {1}\nWidth: {2}\nDictionarySize: {3}", iterations, gameLength, gameWidth, PossibleWords.Count);
-      System.Console.Out.WriteLine("[----+----+----+----+----+----+----+----+----+-----]");
+      Console.WriteLine("Running simulations ... ");
+      Console.WriteLine("Iterations: {0}\nLength: {1}\nWidth: {2}\nDictionarySize: {3}", iterations, gameLength, gameWidth, PossibleWords.Count);
+      Console.WriteLine("[----+----+----+----+----+----+----+----+----+-----]");
       System.Console.Out.Write("[");
 
       int graphstep = iterations / 50;
@@ -50,7 +48,7 @@ namespace WordPlay
         if (iterations > 0 &&
           (i % graphstep) == 0)
         {
-          System.Console.Out.Write("#");
+          Console.Write("#");
         }
 
         Parallel.ForEach(experiments, experiment =>
@@ -65,16 +63,16 @@ namespace WordPlay
         });
       }
 
-      System.Console.Out.WriteLine("]");
-      System.Console.Out.WriteLine();
-      System.Console.Out.WriteLine($"Elapsed time: {sw.ElapsedMilliseconds} ms");
-      System.Console.Out.WriteLine();
-      System.Console.Out.WriteLine(" ModelType           | Win % | Wins  | Losses  | Sol Rt | St Dev | Histogram");
-      System.Console.Out.WriteLine("---------------------|-------|-------|---------|--------|--------|------------------");
+      Console.WriteLine("]");
+      Console.WriteLine();
+      Console.WriteLine($"Elapsed time: {sw.ElapsedMilliseconds} ms");
+      Console.WriteLine();
+      Console.WriteLine(" ModelType           | Win % | Wins  | Losses  | Sol Rt | St Dev | Histogram");
+      Console.WriteLine("---------------------|-------|-------|---------|--------|--------|------------------");
       foreach (var exp in experiments)
       {
         exp.Snapshot();
-        System.Console.Out.WriteLine(
+        Console.WriteLine(
             string.Format(
                 "{0} | {1,2} | {2,2}| {3} | {4} | {5} | {6}",
                 exp.Settings.Name.PadRight(20, ' '),
