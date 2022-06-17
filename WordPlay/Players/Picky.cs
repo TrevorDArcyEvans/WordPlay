@@ -1,58 +1,57 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace WordPlay
+namespace WordPlay;
+
+public class Picky : Player
 {
-  public class Picky : Player
+  protected List<string> preferredWords;
+
+  public Picky(List<string> source, string seed) : base(source)
   {
-    protected List<string> preferredWords;
+    // our strategy is destructive
+    // make a copy of the list.
+    preferredWords = new List<string>(seed.Split(';'));
+    Wordlist = source.ToList();
+  }
 
-    public Picky(List<string> source, string seed) : base(source)
+  public override char[] SelectWord()
+  {
+    // picky uses preferred words first.
+    while (preferredWords.Count > 0)
     {
-      // our strategy is destructive
-      // make a copy of the list.
-      preferredWords = new List<string>(seed.Split(';'));
-      this.Wordlist = source.ToList();
+      if (Wordlist.Contains(preferredWords.First()))
+      {
+        return preferredWords.First().ToCharArray();
+      }
+      else
+      {
+        preferredWords.Remove(preferredWords.First());
+      }
     }
 
-    public override char[] SelectWord()
+    return Wordlist.Random().ToCharArray();
+  }
+
+  public override void RespondToPlay(char[] guess, char[] response)
+  {
+    for (int i = 0; i < 5; i++)
     {
-      // picky uses preferred words first.
-      while (preferredWords.Count > 0)
+      if (response[i] == (char)ResponseType.Full)
       {
-        if (Wordlist.Contains(preferredWords.First()))
-        {
-          return preferredWords.First().ToCharArray();
-        }
-        else
-        {
-          preferredWords.Remove(preferredWords.First());
-        }
+        require(guess[i], i);
       }
 
-      return Wordlist.Random().ToCharArray();
-    }
-
-    public override void RespondToPlay(char[] guess, char[] response)
-    {
-      for (int i = 0; i < 5; i++)
+      if (response[i] == (char)ResponseType.NoMatch)
       {
-        if (response[i] == (char)ResponseType.Full)
-        {
-          require(guess[i], i);
-        }
-
-        if (response[i] == (char)ResponseType.NoMatch)
-        {
-          whittle(guess[i]);
-        }
-
-        if (response[i] == (char)ResponseType.Partial)
-        {
-          restrict(guess[i], i);
-        }
+        whittle(guess[i]);
       }
-      Wordlist.Remove(new string(guess));
+
+      if (response[i] == (char)ResponseType.Partial)
+      {
+        restrict(guess[i], i);
+      }
     }
+    Wordlist.Remove(new string(guess));
   }
 }

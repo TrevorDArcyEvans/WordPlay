@@ -1,14 +1,13 @@
-namespace WordPlay
+namespace WordPlay;
+
+public enum PlayerType
 {
-  public enum PlayerType
-  {
-    basic,
-    dreamy,
-    dopey,
-    thoughtful,
-    sage,
-    picky,
-    freaky,
-    doublefreaky
-  }
+  basic,
+  dreamy,
+  dopey,
+  thoughtful,
+  sage,
+  picky,
+  freaky,
+  doublefreaky
 }

@@ -2,50 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WordPlay
+namespace WordPlay;
+
+public static class ExtendingClass
 {
-  public static class ExtendingClass
+  private static Random randomGeneraton = new Random((int)DateTime.Now.Ticks);
+
+  public static string Random(this IList<string> list)
   {
-    private static Random randomGeneraton = new Random((int)DateTime.Now.Ticks);
-
-    public static string Random(this IList<string> list)
+    // Todo : make generic
+    if (list.Count > 0)
     {
-      // Todo : make generic
-      if (list.Count > 0)
-      {
-        return list[randomGeneraton.Next(list.Count)];
-      }
-      else
-      {
-        return "";
-      }
+      return list[randomGeneraton.Next(list.Count)];
     }
-
-    public static KeyValuePair<char, int>[] Analysis(this List<string> list)
+    else
     {
-      Dictionary<char, int> FrequencyCount = new Dictionary<char, int>();
+      return "";
+    }
+  }
 
-      foreach (string s in list)
+  public static KeyValuePair<char, int>[] Analysis(this List<string> list)
+  {
+    Dictionary<char, int> FrequencyCount = new Dictionary<char, int>();
+
+    foreach (string s in list)
+    {
+      foreach (char c in s.ToCharArray())
       {
-        foreach (char c in s.ToCharArray())
+        if (FrequencyCount.ContainsKey(c))
         {
-          if (FrequencyCount.ContainsKey(c))
-          {
-            FrequencyCount[c]++;
-          }
-          else
-          {
-            FrequencyCount.Add(c, 1);
-          }
+          FrequencyCount[c]++;
+        }
+        else
+        {
+          FrequencyCount.Add(c, 1);
         }
       }
-
-      return FrequencyCount.ToArray().OrderBy(o => (1 - o.Value)).ToArray();
     }
 
-    public static bool Contains(this string s, char c)
-    {
-      return s.ToCharArray().Contains(c);
-    }
+    return FrequencyCount.ToArray().OrderBy(o => (1 - o.Value)).ToArray();
+  }
+
+  public static bool Contains(this string s, char c)
+  {
+    return s.ToCharArray().Contains(c);
   }
 }

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace WordPlay
+namespace WordPlay;
+
+public class ResultStruct
 {
-  public class ResultStruct
-  {
-    public string Name;
-    public List<char[]> Outcomes;
-    public bool Victorious;
-    public char[] Solution;
-  }
+  public string Name;
+  public List<char[]> Outcomes;
+  public bool Victorious;
+  public char[] Solution;
 }

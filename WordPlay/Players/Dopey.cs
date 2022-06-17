@@ -1,26 +1,25 @@
 ﻿using System.Collections.Generic;
 
-namespace WordPlay
+namespace WordPlay;
+
+public class Dopey : Player
 {
-  public class Dopey : Player
+  private HashSet<char[]> chosen = new();
+
+  public Dopey(List<string> source) :
+    base(source)
   {
-    private HashSet<char[]> chosen = new();
+  }
 
-    public Dopey(List<string> source) :
-      base(source)
+  public new char[] SelectWord()
+  {
+    // this doesn't duplicate guesses
+    char[] s;
+    do
     {
+      s = base.SelectWord();
     }
-
-    public new char[] SelectWord()
-    {
-      // this doesn't duplicate guesses
-      char[] s;
-      do
-      {
-        s = base.SelectWord();
-      }
-      while (chosen.Contains(s));
-      return s;
-    }
+    while (chosen.Contains(s));
+    return s;
   }
 }
