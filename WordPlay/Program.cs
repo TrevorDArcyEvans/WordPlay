@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace WordPlay
 {
-
   public class Program
   {
     public static List<string> PossibleWords = new List<string>(Wordlist.Words());
@@ -14,6 +13,7 @@ namespace WordPlay
     public static void Main(string[] args)
     {
       var sw = Stopwatch.StartNew();
+     //List<string> PossibleWords = new List<string>(Wordlist.Words());
 
       System.Console.Out.WriteLine("Loading {0}", Wordlist.FileName);
 
