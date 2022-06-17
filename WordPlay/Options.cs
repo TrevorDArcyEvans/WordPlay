@@ -9,4 +9,7 @@ public class Options
 
   [Option('l', "length", Default = 6, Required = false, HelpText = "Maximum number of guesses")]
   public int GameLength { get; set; }
+
+  [Option('i', "iterations", Default = 1000, Required = false, HelpText = "Number of iterations to run")]
+  public int Iterations { get; set; }
 }

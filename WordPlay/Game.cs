@@ -5,24 +5,25 @@ public class Game
   public bool GameOver;
   public char[] word;
   private int turn = 0;
-  private int maxTurns = 6;
-  public string Name = "";
+  private readonly int _maxTurns = 6;
+  private readonly int _gameWidth = 5;
 
-  public Game(string wordSelected = null, int maxGuesses = 6)
+  public Game(string wordSelected = null, int maxGuesses = 6, int gameWidth = 5)
   {
     word = wordSelected.ToCharArray();
     turn = 0;
     GameOver = false;
-    maxTurns = maxGuesses - 1;
+    _maxTurns = maxGuesses - 1;
+    _gameWidth = gameWidth;
   }
 
   public char[] Play(char[] guessword)
   {
-    int numberOfExactMatches = 0;
-    char[] retval = new char[5];
-    if (turn < maxTurns)
+    var numberOfExactMatches = 0;
+    var retval = new char[_gameWidth];
+    if (turn < _maxTurns)
     {
-      for (int i = 0; i < 5; i++)
+      for (var i = 0; i < _gameWidth; i++)
       {
         retval[i] = (char)ResponseType.NoMatch;
         if (guessword[i] == word[i])
@@ -32,7 +33,7 @@ public class Game
         }
         else
         {
-          for (int j = 0; j < 5; j++)
+          for (var j = 0; j < _gameWidth; j++)
           {
             if (guessword[i] == word[j] &&
                 retval[i] == (char)ResponseType.NoMatch)
@@ -44,12 +45,12 @@ public class Game
       }
       turn++;
 
-      if (numberOfExactMatches == 5)
+      if (numberOfExactMatches == _gameWidth)
       {
         GameOver = true;
       }
 
-      if (turn == maxTurns)
+      if (turn == _maxTurns)
       {
         GameOver = true;
       }
@@ -63,8 +64,8 @@ public class Game
 
   public bool IsResponseSolution(char[] responsetext)
   {
-    bool retval = true;
-    for (int i = 0; i < 5; i++)
+    var retval = true;
+    for (var i = 0; i < _gameWidth; i++)
     {
       if (responsetext[i] != (char)ResponseType.Full)
       {
