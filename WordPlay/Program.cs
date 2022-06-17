@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using CommandLine;
 
 namespace WordPlay;
 
@@ -9,9 +10,15 @@ public class Program
 {
   public static void Main(string[] args)
   {
+    Parser.Default.ParseArguments<Options>(args)
+      .WithParsed<Options>(opt => { Run(opt); });
+  }
+
+  private static void Run(Options opt)
+  {
     var iterations = 1000;
-    var gameLength = 6;
-    var gameWidth = 5;
+    var gameLength = opt.GameLength;
+    var gameWidth = opt.GameWidth;
 
     var sw = Stopwatch.StartNew();
 
