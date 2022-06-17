@@ -4,10 +4,10 @@ namespace WordPlay;
 
 public class Freaky : Sage
 {
-  public List<char> played = new List<char>();
+  public List<char> played = new();
 
-  public Freaky(List<string> source) :
-    base(source)
+  public Freaky(List<string> source, int gameWidth) :
+    base(source, gameWidth)
   {
   }
 
@@ -19,7 +19,7 @@ public class Freaky : Sage
 
     var retval = Wordlist.Random();
 
-    int mostFrequentletter = -1; ;
+    var mostFrequentletter = -1; ;
     // avoid re-requiring 'successful' vowels
     for (var i = 0; (i < played.Count && i < Fq.Length); i++)
     {

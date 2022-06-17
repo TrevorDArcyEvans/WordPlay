@@ -14,11 +14,13 @@ public class Player
   protected bool Victory = false;
   public string Name = "base";
   protected char[] Solution;
+  protected readonly int _gameWidth = 5;
 
-  public Player(List<string> source)
+  public Player(List<string> source, int gameWidth = 5)
   {
     Name = "Base" + DateTime.Now.Ticks;
     Wordlist = source;
+    _gameWidth = gameWidth;
   }
 
   public virtual void RespondToPlay(char[] Guess, char[] Response)

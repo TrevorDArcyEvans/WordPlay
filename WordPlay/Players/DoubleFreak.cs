@@ -4,8 +4,8 @@ namespace WordPlay;
 
 public class DoubleFreaky : Sage
 {
-  public DoubleFreaky(List<string> source) :
-    base(source)
+  public DoubleFreaky(List<string> source, int gameWidth) :
+    base(source, gameWidth)
   {
   }
 
@@ -13,13 +13,13 @@ public class DoubleFreaky : Sage
   public string Scoringest()
   {
     var Qd = new Dictionary<char, int>(Wordlist.Analysis());
-    int highScore = 0;
-    string highString = "";
+    var highScore = 0;
+    var highString = "";
 
-    foreach (string s in Wordlist)
+    foreach (var s in Wordlist)
     {
       var score = 0;
-      foreach (char c in s.ToCharArray())
+      foreach (var c in s)
       {
         score += Qd[c];
       }

@@ -7,7 +7,8 @@ public class Picky : Player
 {
   protected List<string> preferredWords;
 
-  public Picky(List<string> source, string seed) : base(source)
+  public Picky(List<string> source, string seed, int gameWidth) : 
+    base(source, gameWidth)
   {
     // our strategy is destructive
     // make a copy of the list.
@@ -35,7 +36,7 @@ public class Picky : Player
 
   public override void RespondToPlay(char[] guess, char[] response)
   {
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < _gameWidth; i++)
     {
       if (response[i] == (char)ResponseType.Full)
       {

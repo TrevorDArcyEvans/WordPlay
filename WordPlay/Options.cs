@@ -12,4 +12,7 @@ public class Options
 
   [Option('i', "iterations", Default = 1000, Required = false, HelpText = "Number of iterations to run")]
   public int Iterations { get; set; }
+
+  [Option('f', "file", Default = "wordle-solves.txt", Required = false, HelpText = "Word list to use: wordle-solves.txt [2315] or words.txt [26132]")]
+  public string WordListFile { get; set; }
 }

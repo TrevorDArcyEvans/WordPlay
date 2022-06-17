@@ -6,7 +6,8 @@ namespace WordPlay;
 // this is the minimum expected-to-play-right item.
 public class Dreamy : Player
 {
-  public Dreamy(List<string> source) : base(source)
+  public Dreamy(List<string> source, int gameWidth) : 
+    base(source, gameWidth)
   {
     // our strategy is destructive
     // make a copy of the list.
@@ -21,7 +22,7 @@ public class Dreamy : Player
   // Dreamy doesn't remember affirmations, just negations
   public override void RespondToPlay(char[] guess, char[] response)
   {
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < _gameWidth; i++)
     {
       if (response[i] == (char)ResponseType.NoMatch)
       {

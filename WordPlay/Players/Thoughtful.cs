@@ -6,7 +6,8 @@ namespace WordPlay;
 // this is the minimum expected-to-play-right item.
 public class Thoughtful : Player
 {
-  public Thoughtful(List<string> source) : base(source)
+  public Thoughtful(List<string> source, int gameWidth) : 
+    base(source, gameWidth)
   {
     // our strategy is destructive
     // make a copy of the list.
@@ -20,7 +21,7 @@ public class Thoughtful : Player
 
   public override void RespondToPlay(char[] guess, char[] response)
   {
-    for (int i = 0; i < 5; i++)
+    for (var i = 0; i < _gameWidth; i++)
     {
       if (response[i] == (char)ResponseType.Full)
       {

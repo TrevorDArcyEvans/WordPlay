@@ -5,7 +5,8 @@ namespace WordPlay;
 
 public class Sage : Player
 {
-  public Sage(List<string> source) : base(source)
+  public Sage(List<string> source, int gameWidth) :
+    base(source, gameWidth)
   {
     // our strategy is destructive
     // make a copy of the list.
@@ -19,7 +20,7 @@ public class Sage : Player
 
   public override void RespondToPlay(char[] guess, char[] response)
   {
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < _gameWidth; i++)
     {
       if (response[i] == (char)ResponseType.Full)
       {

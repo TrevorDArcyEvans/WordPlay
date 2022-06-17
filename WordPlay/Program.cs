@@ -44,7 +44,7 @@ public class Program
 
     for (var i = 0; i < iterations; i++)
     {
-      var w = possibleWords.Random();
+      var targetWord = possibleWords.Random();
 
       if (i % graphstep == 0)
       {
@@ -56,9 +56,10 @@ public class Program
         var p = pf.Create(
           exp.Settings.Type,
           possibleWords,
+          exp.Settings.GameWidth,
           exp.Settings.Name,
           exp.Settings.Seed);
-        var g = new Game(w, exp.Settings.GameLength, exp.Settings.GameWidth);
+        var g = new Game(targetWord, exp.Settings.GameLength, exp.Settings.GameWidth);
         exp.Results.Add(p.Play(g));
       });
     }

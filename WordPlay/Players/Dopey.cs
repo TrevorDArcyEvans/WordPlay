@@ -11,15 +11,22 @@ public class Dopey : Player
   {
   }
 
-  public new char[] SelectWord()
+  public override char[] SelectWord()
   {
     // this doesn't duplicate guesses
     char[] s;
-    do
+    while(true)
     {
       s = base.SelectWord();
+      if (chosen.Contains(s))
+      {
+        continue;
+      }
+
+      chosen.Add(s);
+      break;
     }
-    while (chosen.Contains(s));
+
     return s;
   }
 }
