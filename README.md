@@ -75,7 +75,7 @@ dotnet build
 ```bash
 $ ./WordPlay --help
 WordPlay 1.0.0
-Copyright (C) 2022 WordPlay
+Copyright 2022 Sean Munson + Trevor D'Arcy-Evans
 
   -w, --width         (Default: 5) Number of letters in target word
 
