@@ -21,7 +21,6 @@ Wordle 222 5/6*
 🟩🟩🟩🟩🟩<br>
 
 ## Initial Exploration
-
 This game seemed sufficiently constrained that an automated exploration of the combinatorics was tempting. 
 
 Initial development uses/used the [english-words](https://github.com/dwyl/english-words) repo from
@@ -34,20 +33,20 @@ repackaged by other websites, which was simple because it contains both the list
 the list of 'viable guesses' (10656). Pulling those lists out of the Javascript source code we can see
 the answers and guesses are both smaller than the list of words from dwyl. 
 
-A simulator was built [Game.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Game.cs) and a
-base class [Player.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Player.cs) to
+A simulator was built [Game.cs](WordPlay/Game.cs) and a
+base class [Player.cs](WordPlay/Players/Player.cs) to
 interact with the game. These established a baseline for 'bad guessing' players who establish the
 framework for analysis. Word selection and word guessing both come from the same pool of words presently. 
 
 ## Bot types : 
-- Player ([player.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Player.cs)) : Basic implementation. Randomly guesses words. 
-- Dopey ([Dopey.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Dopey.cs)) : Randomly guesses words, but doesn't repeat.
-- Dreamy ([Dreamy.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Dreamy.cs)) : When a letter is reported absent from the solution, dreamy won't guess words containing that letter (negative selection)
-- Thoughtful ([Thoughtful.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Thoughtful.cs)) : Dreamy + When a letter is reported in a location, thoughtful won't guess words without that letter at that position (positive selection)
-- Sage ([Sage.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Sage.cs)) : Thoughtful + When a letter is reported, but not at a location, Sage won't guess words having that letter in that position (partial selection)
-- Picky ([Picky.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Picky.cs)) : Sage + A pre-selected set of candidate guesses (simulating people with 'favorite starting words')
-- Freaky ([Freaky.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/Freaky.cs) : Sage + Each step, it determines the most common letter in the dictionary and then ensures that the guess includes that letter. 
-- DoubleFreak ([DoubleFreak.cs](https://github.com/seanmunson/WordPlay/blob/main/WordPlay/Players/DoubleFreak.cs) : Sage + in each step, it evaluates every word in the list and assigns a weight based on the popularity of the letter, then choosing the highest-ranked word.
+- Player ([Player.cs](WordPlay/Players/Player.cs)) : Basic implementation. Randomly guesses words. 
+- Dopey ([Dopey.cs](WordPlay/Players/Dopey.cs)) : Randomly guesses words, but doesn't repeat.
+- Dreamy ([Dreamy.cs](WordPlay/Players/Dreamy.cs)) : When a letter is reported absent from the solution, dreamy won't guess words containing that letter (negative selection)
+- Thoughtful ([Thoughtful.cs](WordPlay/Players/Thoughtful.cs)) : Dreamy + When a letter is reported in a location, thoughtful won't guess words without that letter at that position (positive selection)
+- Sage ([Sage.cs](WordPlay/Players/Sage.cs)) : Thoughtful + When a letter is reported, but not at a location, Sage won't guess words having that letter in that position (partial selection)
+- Picky ([Picky.cs](WordPlay/Players/Picky.cs)) : Sage + A pre-selected set of candidate guesses (simulating people with 'favorite starting words')
+- Freaky ([Freaky.cs](WordPlay/Players/Freaky.cs) : Sage + Each step, it determines the most common letter in the dictionary and then ensures that the guess includes that letter. 
+- DoubleFreak ([DoubleFreak.cs](WordPlay/Players/DoubleFreak.cs) : Sage + in each step, it evaluates every word in the list and assigns a weight based on the popularity of the letter, then choosing the highest-ranked word.
 
 ## ToDo:  
 - Performance effects on seperated lists of candidate and non-winning words, as wordle does. 
