@@ -2,31 +2,31 @@
 using System.IO;
 using System.Linq;
 
-namespace WordPlay
+namespace WordPlay;
+
+public class Wordlist
 {
-  public static class Wordlist
+  public readonly string FileName = "words.txt";
+
+  public string[] Words { get; } = Array.Empty<string>();
+
+  public Wordlist(string fileName = "words.txt", int width = 5, bool useProper = false)
   {
-    public static string FileName = "words.txt";
-    private static string[] words = Array.Empty<string>();
+    FileName = fileName;
 
-    public static string[] Words(int width = 5, bool useProper = false)
+    var garbagefilter = ".,-_/\\'\"".ToCharArray();
+    if (Words.Count() == 0)
     {
-      char[] garbagefilter = ".,-_/\\'\"".ToCharArray();
-      if (words.Count() == 0)
-      {
-        words = File.ReadAllLines(FileName)
-          .Where(w => w.LastIndexOfAny(garbagefilter) < 0)
-          .Where(w => w.Length == width)
-          .ToArray();
-      }
+      Words = File.ReadAllLines(FileName)
+        .Where(w => w.LastIndexOfAny(garbagefilter) < 0)
+        .Where(w => w.Length == width)
+        .ToArray();
+    }
 
-      // filter for 
-      if (useProper == false)
-      {
-        words = words.Where(s => s.ToCharArray()[0] > 'Z').ToArray();
-      }
-
-      return words;
+    // filter for 
+    if (useProper == false)
+    {
+      Words = Words.Where(s => s.ToCharArray()[0] > 'Z').ToArray();
     }
   }
 }
