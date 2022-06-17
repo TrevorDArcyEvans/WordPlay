@@ -52,7 +52,7 @@ public class ExperimentStruct
 
     for (int l = 1; l < countOfSolutionLengths.Length; l++)
     {
-      Histogram += String.Format(" {0}", countOfSolutionLengths[l].ToString().PadRight(5, ' '));
+      Histogram += $" {countOfSolutionLengths[l].ToString().PadRight(5, ' ')}";
     }
 
     foreach (var r in Results)
