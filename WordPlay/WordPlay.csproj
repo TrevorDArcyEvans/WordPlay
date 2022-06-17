@@ -3,6 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
+    <Version>1.0.0</Version>
+    <Authors>Sean Munson + Trevor D'Arcy-Evans</Authors>
+    <Copyright>Copyright (c) 2022 Sean Munson + Trevor D'Arcy-Evans</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
